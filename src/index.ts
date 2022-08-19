@@ -38,3 +38,4 @@ class TaskScheduler {
 
 const taskScheduler = new TaskScheduler();
 taskScheduler.execute();
+taskScheduler.generateFile();

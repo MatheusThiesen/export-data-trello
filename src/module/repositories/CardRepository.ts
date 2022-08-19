@@ -15,7 +15,7 @@ interface ResponseCard {
   customFieldItems: {
     id: string;
     idCustomField: string;
-    values?: {
+    value?: {
       date: string;
     };
   }[];
@@ -110,9 +110,10 @@ export class CardRepository implements ICardRepository {
       Finalizado: card.dueComplete ? "S" : "N",
       Card_URL: card.url,
       Etiquetas: card.labels.map((label) => ({ name: label.name })),
-      DataPrevista: card.customFieldItems.find(
-        (field) => field.idCustomField === custonFieldDataPrevistaId
-      )?.values?.date,
+      DataPrevista:
+        card.customFieldItems.find(
+          (field) => field.idCustomField === custonFieldDataPrevistaId
+        )?.value?.date ?? null,
       Coluna: lists.find((list) => list.id === card.idList)?.name,
       Membros: card.idMembers
         .map((id) => members.find((member) => member.id === id)?.fullName)

@@ -57,7 +57,7 @@ export class CardRepository implements ICardRepository {
 
   async getAll(): Promise<Card[]> {
     const lists = (
-      await api.get<ResponseLists[]>(`/1/boards/${this.boardId}/members`, {
+      await api.get<ResponseLists[]>(`/1/boards/${this.boardId}/lists`, {
         params: {
           key: this.key,
           token: this.token,

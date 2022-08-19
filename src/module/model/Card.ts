@@ -1,17 +1,17 @@
 export interface Card {
   id: string;
-  coluna?: string;
-  titulo: string;
-  descricao: string;
-  dataInicio?: string | null;
-  dataPrevista?: string | null;
-  dataEntrega?: string | null;
-  finalizado?: string;
-  url: string;
-  etiquetas: {
+  Coluna?: string;
+  Titulo: string;
+  Descrição: string;
+  Etiquetas: {
     name?: string;
   }[];
-  membros: {
-    nomeCompleto?: string;
+  Membros: {
+    name?: string;
   }[];
+  DataInicio?: string | null;
+  DataPrevista?: string | null;
+  DataEntrega?: string | null;
+  Finalizado?: string;
+  Card_URL: string;
 }

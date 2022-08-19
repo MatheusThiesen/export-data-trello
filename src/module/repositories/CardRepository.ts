@@ -103,20 +103,20 @@ export class CardRepository implements ICardRepository {
 
     const cards: Card[] = response.data.map((card) => ({
       id: card.id,
-      titulo: card.name,
-      descricao: card.desc,
-      dataEntrega: card.due,
-      dataInicio: card.start,
-      finalizado: card.dueComplete ? "S" : "N",
-      url: card.url,
-      etiquetas: card.labels.map((label) => ({ name: label.name })),
-      dataPrevista: card.customFieldItems.find(
+      Titulo: card.name,
+      Descrição: card.desc,
+      DataEntrega: card.due,
+      DataInicio: card.start,
+      Finalizado: card.dueComplete ? "S" : "N",
+      Card_URL: card.url,
+      Etiquetas: card.labels.map((label) => ({ name: label.name })),
+      DataPrevista: card.customFieldItems.find(
         (field) => field.idCustomField === custonFieldDataPrevistaId
       )?.values?.date,
-      coluna: lists.find((list) => list.id === card.idList)?.name,
-      membros: card.idMembers
+      Coluna: lists.find((list) => list.id === card.idList)?.name,
+      Membros: card.idMembers
         .map((id) => members.find((member) => member.id === id)?.fullName)
-        .map((nomeCompleto) => ({ nomeCompleto })),
+        .map((name) => ({ name })),
     }));
 
     return cards;

@@ -15,8 +15,11 @@ interface ResponseCard {
   customFieldItems: {
     id: string;
     idCustomField: string;
+    idValue: string;
     value?: {
       date: string;
+      text: string;
+      number: string;
     };
   }[];
   labels: {
@@ -37,6 +40,13 @@ interface ResponseCustomFields {
   id: string;
   idModel: string;
   name: string;
+
+  options: {
+    id: string;
+    value: {
+      text: string;
+    };
+  }[];
 }
 
 interface ResponseLists {
@@ -100,6 +110,25 @@ export class CardRepository implements ICardRepository {
     const custonFieldDataPrevistaId = customFields.find(
       (field) => field.name === "Data Prevista"
     )?.id;
+    const custonFieldDataMotivoAtrasoId = customFields.find(
+      (field) => field.name === "Motivo de Atraso"
+    )?.id;
+    const custonFieldDataArea = customFields.find(
+      (field) => field.name === "Área"
+    );
+    const custonFieldDataChamadoId = customFields.find(
+      (field) => field.name === "Chamado"
+    )?.id;
+
+    const custonFieldDataPrioridade = customFields.find(
+      (field) => field.name === "Prioridade"
+    );
+    const custonFieldDataStatus = customFields.find(
+      (field) => field.name === "Status"
+    );
+    const custonFieldDataRisco = customFields.find(
+      (field) => field.name === "Risco"
+    );
 
     const cards: Card[] = response.data.map((card) => ({
       id: card.id,
@@ -114,6 +143,51 @@ export class CardRepository implements ICardRepository {
         card.customFieldItems.find(
           (field) => field.idCustomField === custonFieldDataPrevistaId
         )?.value?.date ?? null,
+      "Motivo de Atraso":
+        card.customFieldItems.find(
+          (field) => field.idCustomField === custonFieldDataMotivoAtrasoId
+        )?.value?.text ?? null,
+      Área:
+        custonFieldDataArea?.options.find(
+          (o) =>
+            o.id ===
+            card.customFieldItems.find(
+              (field) => field.idCustomField === custonFieldDataArea?.id
+            )?.idValue
+        )?.value.text ?? null,
+
+      Chamado:
+        card.customFieldItems.find(
+          (field) => field.idCustomField === custonFieldDataChamadoId
+        )?.value?.number ?? null,
+
+      Prioridade:
+        custonFieldDataPrioridade?.options.find(
+          (o) =>
+            o.id ===
+            card.customFieldItems.find(
+              (field) => field.idCustomField === custonFieldDataPrioridade?.id
+            )?.idValue
+        )?.value.text ?? null,
+
+      Status:
+        custonFieldDataStatus?.options.find(
+          (o) =>
+            o.id ===
+            card.customFieldItems.find(
+              (field) => field.idCustomField === custonFieldDataStatus?.id
+            )?.idValue
+        )?.value.text ?? null,
+
+      Risco:
+        custonFieldDataRisco?.options.find(
+          (o) =>
+            o.id ===
+            card.customFieldItems.find(
+              (field) => field.idCustomField === custonFieldDataRisco?.id
+            )?.idValue
+        )?.value.text ?? null,
+
       Coluna: lists.find((list) => list.id === card.idList)?.name,
       Membros: card.idMembers
         .map((id) => members.find((member) => member.id === id)?.fullName)

@@ -7,9 +7,10 @@ export class GenerateFileUseCase {
   private filepath: string;
 
   constructor(private cardRepository: GetCardsUseCase) {
-    this.filename = process.env.NOME_ARQUIVO ?? "planilha.xlsx";
+    this.filename = process.env.NOME_ARQUIVO_TRELLO ?? "trello.json";
     this.filepath =
-      process.env.DESTINO_ARQUIVO ?? path.resolve(__dirname, this.filename);
+      process.env.DESTINO_ARQUIVO_TRELLO ??
+      path.resolve(__dirname, this.filename);
   }
 
   getNowFormatDate() {
@@ -32,7 +33,7 @@ export class GenerateFileUseCase {
     );
 
     return console.log(
-      `[GERADO]  Arquivo (${this.filename}) no caminho ${path.resolve(
+      `[GERADO-TRELLO]  Arquivo (${this.filename}) no caminho ${path.resolve(
         this.filepath,
         this.filename
       )} - Data ${this.getNowFormatDate()}`

@@ -4,4 +4,6 @@ import { GetCardsUseCase } from "./GetCardsUseCase";
 
 const cardRepository = new CardRepository();
 export const getCardsUseCase = new GetCardsUseCase(cardRepository);
-export const generateFileUseCase = new GenerateFileUseCase(getCardsUseCase);
+export const generateFileTrelloUseCase = new GenerateFileUseCase(
+  getCardsUseCase
+);

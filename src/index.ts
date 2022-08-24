@@ -1,6 +1,7 @@
 import "dotenv/config";
 import cron from "node-cron";
-import { generateFileUseCase } from "./module/useCases";
+import { generateFileTomticketUseCase } from "./module/tomticket/useCases";
+import { generateFileTrelloUseCase } from "./module/trello/useCases";
 
 class TaskScheduler {
   private cronJob: string;
@@ -24,7 +25,8 @@ class TaskScheduler {
     cron.schedule(this.cronJob, async () => {
       try {
         console.log(`[INICIO][SINCRONIZACAO] Data ${this.getNowFormatDate()}`);
-        await generateFileUseCase.execute();
+        await generateFileTrelloUseCase.execute();
+        await generateFileTomticketUseCase.execute();
         console.log(`[FIM][SINCRONIZACAO] Data ${this.getNowFormatDate()}`);
       } catch (error) {
         console.log(`[ERRO][SINCRONIZACAO] Data ${this.getNowFormatDate()}`);
@@ -32,7 +34,8 @@ class TaskScheduler {
     });
   }
   async generateFile() {
-    await generateFileUseCase.execute();
+    await generateFileTrelloUseCase.execute();
+    await generateFileTomticketUseCase.execute();
   }
 }
 

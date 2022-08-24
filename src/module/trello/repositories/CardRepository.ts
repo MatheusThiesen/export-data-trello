@@ -1,4 +1,4 @@
-import { api } from "../../service/api";
+import { api } from "../../../service/apiTrello";
 import { Card } from "../model/Card";
 import { ICardRepository } from "./ICardRepository";
 

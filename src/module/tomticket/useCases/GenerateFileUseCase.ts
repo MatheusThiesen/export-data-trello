@@ -29,7 +29,11 @@ export class GenerateFileUseCase {
 
     fs.writeFileSync(
       path.resolve(this.filepath, this.filename),
-      JSON.stringify(cards, null, 2)
+      JSON.stringify(
+        cards.map((data) => ({ ...data, DataGeracaoArquivo: new Date() })),
+        null,
+        2
+      )
     );
 
     return console.log(

@@ -18,6 +18,7 @@ export interface Card {
   DataInicio?: string | null;
   DataPrevista?: string | null;
   DataEntrega?: string | null;
+  DataUltimaAlterações?: string | null;
   Finalizado?: string;
   Card_URL: string;
 }

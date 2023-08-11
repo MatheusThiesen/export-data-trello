@@ -10,6 +10,7 @@ interface ResponseCard {
   dueComplete: boolean;
   due: string;
   start: string;
+  dateLastActivity: string;
   idList: string;
 
   customFieldItems: {
@@ -135,6 +136,7 @@ export class CardRepository implements ICardRepository {
       Titulo: card.name,
       Descrição: card.desc,
       DataEntrega: card.due,
+      DataUltimaAlterações: card.dateLastActivity,
       DataInicio: card.start,
       Finalizado: card.dueComplete ? "S" : "N",
       Card_URL: card.url,
